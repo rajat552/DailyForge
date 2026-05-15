@@ -29,6 +29,26 @@
   --radius: 0.75rem;
 }
 
+/* Dark theme overrides */
+.dark {
+  --bg: #0f172a;
+  --surface: #1e293b;
+  --primary: #4eb7b3;
+  --primary-hover: #6dd5c7;
+  --accent: #2d4a5a;
+  --text-main: #e2e8f0;
+  --text-muted: #94a3b8;
+  --border: #334155;
+}
+
+/* Smooth theme transition */
+*,
+*::before,
+*::after {
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease;
+}
+
 /* Utility Classes */
 @layer utilities {
   /* Layout backgrounds */

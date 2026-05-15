@@ -18,7 +18,7 @@ export default function TaskPreview({ tasks }) {
   };
 
   return (
-    <div className="bg-(--surface) rounded-2xl shadow-lg p-6 border border-white/10">
+    <div className="surface-bg rounded-2xl shadow-lg p-6 border-soft">
       <h2 className="text-lg font-semibold text-main mb-4">Upcoming Tasks</h2>
 
       {tasks?.length ? (
@@ -28,7 +28,7 @@ export default function TaskPreview({ tasks }) {
               key={task._id}
               className={`flex items-center gap-4 border-l-4 rounded-xl p-4 transition
               ${priorityBorder[task.priority]}
-              bg-white/80 hover:bg-white shadow-sm`}
+              surface-bg shadow-sm`}
             >
               {/* Checkbox */}
               <input

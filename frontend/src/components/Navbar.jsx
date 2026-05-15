@@ -1,9 +1,12 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
+import { useTheme } from "../context/ThemeContext";
+import { Sun, Moon } from "lucide-react";
 
 const Navbar = () => {
   const { token, logout } = useContext(AuthContext);
+  const { isDark, toggleTheme } = useTheme();
 
   return (
     <nav className="surface-bg fixed top-0 z-20 w-full border-soft shadow-sm">
@@ -13,6 +16,20 @@ const Navbar = () => {
         </Link>
 
         <div className="flex items-center gap-4">
+          {/* Dark/Light Mode Toggle */}
+          <button
+            onClick={toggleTheme}
+            className="p-2 rounded-xl transition-all duration-200 cursor-pointer hover:bg-[var(--accent)]/20"
+            aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+            title={isDark ? "Switch to light mode" : "Switch to dark mode"}
+          >
+            {isDark ? (
+              <Sun size={20} className="text-main" />
+            ) : (
+              <Moon size={20} className="text-main" />
+            )}
+          </button>
+
           {!token ? (
             <>
               <Link

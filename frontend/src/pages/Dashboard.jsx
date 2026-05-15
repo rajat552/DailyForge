@@ -110,7 +110,7 @@ export default function Dashboard() {
         </div>
 
         {/* Saved Routines */}
-        <div className="flex-1 animate-in delay-300 flex flex-col bg-white/80 rounded-xl shadow-md p-4 h-74 overflow-y-auto relative">
+        <div className="flex-1 animate-in delay-300 flex flex-col surface-bg rounded-xl shadow-md p-4 h-74 overflow-y-auto relative">
           {/* Header with button */}
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-lg font-semibold text-main">Saved Routines</h2>
@@ -134,7 +134,7 @@ export default function Dashboard() {
               {savedRoutines.map((routine) => (
                 <li
                   key={routine._id}
-                  className="border border-soft rounded-lg p-2 bg-white/80 shadow-sm hover-lift animate-in"
+                  className="border border-soft rounded-lg p-2 surface-bg shadow-sm hover-lift animate-in"
                 >
                   <p className="font-medium text-main">{routine.name}</p>
                   <p className="text-xs text-muted">
