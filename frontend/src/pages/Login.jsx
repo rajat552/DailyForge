@@ -4,9 +4,13 @@ import api from "../api/axios";
 import { AuthContext } from "../context/AuthContext.jsx";
 
 const Login = () => {
-  // two states for inputs
+  // input states
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  // feedback states
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   // useNavigate object
   const navigate = useNavigate();
@@ -16,16 +20,15 @@ const Login = () => {
 
   // submit handler
   const handleSubmit = async (e) => {
-    // prevents page from refreshing
     e.preventDefault();
+    setError("");
+    setLoading(true);
 
-    // send request to server
     try {
       const res = await api.post("/auth/login", {
         email,
         password,
       });
-      console.log("Login success: ", res.data);
 
       // save token in localstorage for later api calls
       localStorage.setItem("token", res.data.token);
@@ -38,9 +41,11 @@ const Login = () => {
       // redirect to dashboard
       navigate("/dashboard");
     } catch (error) {
-      // handle error
-      console.log("Login failed");
-      console.log(error.response?.data || error.message);
+      setError(
+        error.response?.data?.message || "Login failed. Please try again."
+      );
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -112,10 +117,17 @@ const Login = () => {
 
       <button
         type="submit"
-        className="btn btn-primary cursor-pointer w-full mt-2 hover-lift"
+        disabled={loading}
+        className="btn btn-primary cursor-pointer w-full mt-2 hover-lift disabled:opacity-60"
       >
-        Login
+        {loading ? "Logging in…" : "Login"}
       </button>
+
+      {error && (
+        <p className="text-center text-sm text-red-500 mt-2 animate-in">
+          {error}
+        </p>
+      )}
 
       <p className="text-center text-sm text-muted">
         Don't have an account?{" "}
