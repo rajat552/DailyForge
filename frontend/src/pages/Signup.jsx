@@ -9,6 +9,8 @@ const Signup = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
   // feedback states
@@ -152,6 +154,12 @@ const Signup = () => {
           </button>
         </div>
       </div>
+
+      {error && (
+        <div className="px-3 py-2.5 bg-red-50 border border-red-200 rounded-sm text-sm text-red-600">
+          {error}
+        </div>
+      )}
 
       <button
         type="submit"

@@ -4,6 +4,7 @@ import { Eye, EyeOff } from "lucide-react";
 import api from "../api/axios";
 import { AuthContext } from "../context/AuthContext.jsx";
 
+
 const Login = () => {
   // input states
   const [email, setEmail] = useState("");
@@ -96,6 +97,7 @@ const Login = () => {
           Password
         </label>
         <div className="relative">
+          
           <input
             type={showPassword ? "text" : "password"}
             id="password"
@@ -126,7 +128,11 @@ const Login = () => {
           </button>
         </div>
       </div>
-
+      {error && (
+        <div className="px-3 py-2.5 bg-red-50 border border-red-200 rounded-sm text-sm text-red-600">
+          {error}
+        </div>
+      )}
       <button
         type="submit"
         disabled={loading}
