@@ -159,8 +159,9 @@ const Signup = () => {
                 }));
               } else {
                 setErrors((prev) => {
-                  const { password, ...rest } = prev;
-                  return rest;
+                  const nextErrors = { ...prev };
+                  delete nextErrors.password;
+                  return nextErrors;
                 });
               }
             }}
